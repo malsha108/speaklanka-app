@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5b4bdb">
+<title>SpeakLanka AI — English Practice</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{--brand:#5b4bdb;--brand2:#7868f2;--ink:#20213a;--muted:#73758c;--bg:#f5f6fc;--card:#fff;--line:#e8e9f3;--green:#15966a;--soft:#efedff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink)}button,input,textarea,select{font:inherit}button{cursor:pointer}
+.app{max-width:480px;min-height:100dvh;margin:auto;background:var(--bg);position:relative;padding-bottom:88px}
+.top{padding:22px 20px 16px;background:linear-gradient(135deg,#5b4bdb,#8879fa);color:#fff;border-radius:0 0 28px 28px}
+.topline{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:850;letter-spacing:-.5px;font-size:20px}.pill{background:#ffffff25;border:1px solid #ffffff45;padding:7px 10px;border-radius:999px;font-size:12px}
+.hello{margin:24px 0 5px;font-size:25px;font-weight:800;letter-spacing:-.7px}.sub{font-size:13px;opacity:.9}.streak{display:flex;gap:8px;align-items:center;margin-top:16px;font-size:12px}
+.content{padding:18px 16px}.section-head{display:flex;justify-content:space-between;align-items:center;margin:7px 2px 12px}.section-head h2{font-size:16px;margin:0}.small{font-size:12px;color:var(--muted)}
+.hero-card{padding:18px;border-radius:22px;background:var(--card);border:1px solid var(--line);box-shadow:0 8px 24px #29205b08}
+.hero-row{display:flex;gap:14px;align-items:center}.circle{width:58px;height:58px;flex:0 0 58px;border-radius:18px;background:var(--soft);display:grid;place-items:center;font-size:28px}
+h3{margin:0 0 6px;font-size:16px}p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.btn{border:0;background:var(--brand);color:#fff;font-weight:750;border-radius:14px;padding:13px 16px;box-shadow:0 5px 12px #5b4bdb25}.btn:active{transform:scale(.99)}.btn.full{width:100%;margin-top:15px}.btn.secondary{background:var(--soft);color:var(--brand);box-shadow:none}.btn.ghost{background:#fff;color:var(--brand);border:1px solid var(--line);box-shadow:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.feature{background:#fff;border:1px solid var(--line);border-radius:19px;padding:15px;min-height:138px;text-align:left;color:var(--ink)}.feature .emoji{font-size:25px}.feature strong{display:block;margin:12px 0 5px;font-size:14px}.feature span{font-size:12px;color:var(--muted);line-height:1.4}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,100%);display:flex;justify-content:space-around;background:#ffffffef;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 7px calc(10px + env(safe-area-inset-bottom));z-index:5}.nav button{border:0;background:none;color:#8a8ca1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;min-width:65px}.nav button b{font-size:20px;font-weight:500}.nav button.active{color:var(--brand);font-weight:800}
+.screen{display:none}.screen.active{display:block}.back{border:0;background:none;color:var(--brand);font-weight:750;padding:4px 0 16px}.title{font-size:23px;font-weight:850;letter-spacing:-.6px;margin:4px 0 7px}.field{margin:14px 0}.field label{display:block;font-size:12px;font-weight:750;margin-bottom:7px}.field textarea,.field input,.field select{width:100%;border:1px solid #dedfee;background:#fff;border-radius:13px;padding:13px;outline:none;color:var(--ink)}.field textarea{min-height:100px;resize:vertical}.field textarea:focus,.field input:focus,.field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px #5b4bdb16}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.chip{border:1px solid var(--line);border-radius:999px;padding:9px 12px;background:#fff;font-size:12px;color:var(--ink)}.chip.selected{background:var(--soft);border-color:#c8c1ff;color:var(--brand);font-weight:750}
+.result{margin-top:15px;border:1px solid #d8d3ff;background:#fff;border-radius:17px;padding:15px;display:none}.result.show{display:block}.result .tag{font-size:10px;letter-spacing:.7px;color:var(--brand);font-weight:850;margin-bottom:8px}.result .line{margin:10px 0}.result .line strong{font-size:12px;display:block;margin-bottom:4px}.result .line div{font-size:14px;line-height:1.5}.si{font-size:13px;color:#686a81;line-height:1.55}
+.prompt-card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:15px;margin:10px 0}.prompt-card p{margin-top:7px}.choice{display:block;width:100%;text-align:left;border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px;margin-top:8px;color:var(--ink)}.choice.correct{border-color:#84d5b5;background:#edfff7}.choice.wrong{border-color:#ffb2b2;background:#fff4f4}.feedback{font-size:13px;margin-top:10px;line-height:1.5}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 10px}.stat strong{display:block;font-size:22px}.stat span{font-size:11px;color:var(--muted)}
+.progress{height:8px;background:#e8e7f4;border-radius:99px;overflow:hidden;margin-top:9px}.progress div{height:100%;background:linear-gradient(90deg,var(--brand),#9d8fff);width:0%}
+.notice{font-size:11px;color:var(--muted);line-height:1.5;margin-top:12px}.toast{position:fixed;bottom:92px;left:50%;transform:translateX(-50%);background:#20213a;color:#fff;padding:11px 15px;border-radius:12px;font-size:12px;display:none;z-index:10;max-width:90%;text-align:center}
+@media(min-width:600px){body{padding:18px 0}.app{border-radius:28px;overflow:hidden;box-shadow:0 20px 70px #1d1d3a18;min-height:850px}.nav{bottom:18px;border-radius:0 0 28px 28px}.top{padding-top:25px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="topline"><div class="brand">✦ SpeakLanka <span style="font-weight:500;opacity:.85">AI</span></div><div class="pill">🇱🇰 Sinhala + English</div></div>
+  <div class="hello" id="greeting">Hi there! 👋</div><div class="sub">Build confidence, one conversation at a time.</div>
+  <div class="streak"><span>🔥</span><strong id="streakText">Day 1 practice streak</strong><span>·</span><span>5 min/day</span></div>
+</header>
+<main class="content">
+<section class="screen active" id="home">
+  <div class="hero-card">
+    <div class="hero-row"><div class="circle">💬</div><div><h3>Your daily speaking practice</h3><p>Try a real-life conversation and learn a more natural way to say it.</p></div></div>
+    <button class="btn full" onclick="showScreen('practice')">Start practicing →</button>
+  </div>
+  <div class="section-head" style="margin-top:23px"><h2>What do you want to practice?</h2><span class="small">Choose a path</span></div>
+  <div class="grid">
+    <button class="feature" onclick="setPractice('Everyday English');showScreen('practice')"><div class="emoji">☕</div><strong>Everyday English</strong><span>Common daily conversations</span></button>
+    <button class="feature" onclick="showScreen('interview')"><div class="emoji">💼</div><strong>Job interviews</strong><span>Prepare confident answers</span></button>
+    <button class="feature" onclick="showScreen('correct')"><div class="emoji">✨</div><strong>Fix my sentence</strong><span>Make your English natural</span></button>
+    <button class="feature" onclick="showScreen('quiz')"><div class="emoji">🧠</div><strong>Quick quiz</strong><span>Learn in 2 minutes</span></button>
+  </div>
+  <div class="section-head" style="margin-top:24px"><h2>Your progress</h2><button class="back" style="padding:0" onclick="showScreen('progress')">View all</button></div>
+  <div class="hero-card"><div style="display:flex;justify-content:space-between;align-items:center"><div><h3 id="homeCount">0 practice sessions</h3><p>Small steps make progress.</p></div><div style="font-size:28px">🌱</div></div><div class="progress"><div id="homeProgress"></div></div><div class="small" style="margin-top:7px" id="homeGoal">Start today’s first practice</div></div>
+  <p class="notice">Prototype demo: AI responses on this build use sample logic. Connect a secure AI backend before public release.</p>
+</section>
+
+<section class="screen" id="practice">
+  <button class="back" onclick="showScreen('home')">← Home</button>
+  <div class="title">Speaking practice</div><p>Pick a situation and answer in English.</p>
+  <div class="chips" id="practiceChips">
+    <button class="chip selected" onclick="setPractice('Everyday English')">Everyday</button><button class="chip" onclick="setPractice('At work')">At work</button><button class="chip" onclick="setPractice('Meeting someone')">New people</button><button class="chip" onclick="setPractice('Shopping')">Shopping</button>
+  </div>
+  <div class="prompt-card"><div class="small">YOUR SCENARIO</div><h3 id="scenarioTitle" style="margin-top:7px">☕ Ordering a drink</h3><p id="scenarioText">You are at a café. The barista asks what you would like.</p></div>
+  <div class="field"><label for="practiceAnswer">Your answer (English)</label><textarea id="practiceAnswer" placeholder="For example: I would like a cup of tea, please."></textarea></div>
+  <button class="btn full" onclick="reviewPractice()">Review my answer</button>
+  <div class="result" id="practiceResult"></div>
+  <button class="btn secondary full" onclick="nextScenario()">Try another scenario</button>
+</section>
+
+<section class="screen" id="correct">
+  <button class="back" onclick="showScreen('home')">← Home</button>
+  <div class="title">Fix my sentence ✨</div><p>Write a sentence and see a simple correction with Sinhala guidance.</p>
+  <div class="field"><label for="sentenceInput">Your English sentence</label><textarea id="sentenceInput" placeholder="Example: I am learn English every day."></textarea></div>
+  <div class="field"><label for="meaningSelect">Explanation language</label><select id="meaningSelect"><option value="Sinhala">Sinhala</option><option value="English">English</option></select></div>
+  <button class="btn full" onclick="correctSentence()">Improve sentence</button>
+  <div class="result" id="correctResult"></div>
+  <p class="notice">Demo mode gives sample corrections for common patterns. It is not a full grammar checker yet.</p>
+</section>
+
+<section class="screen" id="interview">
+  <button class="back" onclick="showScreen('home')">← Home</button>
+  <div class="title">Interview practice 💼</div><p>Practice a common question for your first job or internship.</p>
+  <div class="prompt-card"><div class="small">QUESTION 01</div><h3 style="margin-top:8px">“Tell me about yourself.”</h3><p>Try to answer in 3–5 sentences. Mention your background, strengths and what you are looking for.</p></div>
+  <div class="field"><label for="interviewAnswer">Your answer</label><textarea id="interviewAnswer" placeholder="I am a student who is interested in..."></textarea></div>
+  <button class="btn full" onclick="reviewInterview()">Review my answer</button>
+  <div class="result" id="interviewResult"></div>
+  <button class="btn secondary full" onclick="document.getElementById('interviewAnswer').value='I am an IT student. I enjoy learning new skills and solving problems. I am looking for an internship where I can learn and contribute to a team.';toast('Sample answer added — edit it to match you.')">Use sample answer</button>
+</section>
+
+<section class="screen" id="quiz">
+  <button class="back" onclick="showScreen('home')">← Home</button>
+  <div class="title">Quick English quiz 🧠</div><p>Choose the most natural sentence.</p>
+  <div class="prompt-card"><div class="small" id="quizCounter">QUESTION 1 OF 3</div><h3 id="quizQuestion" style="margin-top:8px">Choose the correct sentence.</h3><div id="quizOptions"></div><div id="quizFeedback" class="feedback"></div></div>
+  <button class="btn full" id="nextQuiz" onclick="nextQuiz()" disabled>Next question →</button>
+</section>
+
+<section class="screen" id="progress">
+  <button class="back" onclick="showScreen('home')">← Home</button>
+  <div class="title">Your progress 🌱</div><p>Every practice session counts. Your data stays on this device in this demo.</p>
+  <div class="stats" style="margin-top:18px"><div class="stat"><strong id="statSessions">0</strong><span>Sessions</span></div><div class="stat"><strong id="statWords">0</strong><span>Quiz points</span></div><div class="stat"><strong id="statDays">1</strong><span>Practice days*</span></div></div>
+  <div class="hero-card" style="margin-top:14px"><h3>Weekly goal</h3><p>Complete 5 practice activities this week.</p><div class="progress"><div id="progressBar"></div></div><div class="small" style="margin-top:8px" id="progressLabel">0 of 5 activities</div></div>
+  <div class="hero-card" style="margin-top:14px"><h3>Helpful habit</h3><p>Say your answer out loud, read the improved version, then try again without looking.</p></div>
+  <p class="notice">*Demo indicator only. Full streak tracking requires dates and persistent activity history.</p>
+  <button class="btn ghost full" onclick="resetProgress()">Reset demo progress</button>
+</section>
+</main>
+<nav class="nav">
+  <button class="active" data-screen="home" onclick="showScreen('home')"><b>⌂</b>Home</button>
+  <button data-screen="practice" onclick="showScreen('practice')"><b>◉</b>Practice</button>
+  <button data-screen="correct" onclick="showScreen('correct')"><b>✦</b>Correct</button>
+  <button data-screen="quiz" onclick="showScreen('quiz')"><b>▤</b>Quiz</button>
+  <button data-screen="progress" onclick="showScreen('progress')"><b>◴</b>Progress</button>
+</nav>
+<div class="toast" id="toast"></div>
+</div>
+<script>
+const scenarios=[
+ {category:'Everyday English',title:'☕ Ordering a drink',text:'You are at a café. The barista asks what you would like.',sample:'Could I have a cup of tea, please?'},
+ {category:'At work',title:'💻 Asking for help',text:'You are new at work and need help with a task.',sample:'Could you please show me how to do this?'},
+ {category:'Meeting someone',title:'👋 Introducing yourself',text:'You meet a new colleague. Introduce yourself politely.',sample:'Hi, I’m happy to meet you. I’m currently studying IT.'},
+ {category:'Shopping',title:'🛍️ Asking the price',text:'You are in a shop and want to know the price of an item.',sample:'Excuse me, how much does this cost?'}
+];
+const quizData=[
+ {q:'Choose the correct sentence.',opts:['I am learning English every day.','I learning English every day.','I am learn English every day.'],correct:0,why:'Use “am + verb-ing” for an action happening now or around this period. Sinhala: “මම හැමදාම English ඉගෙන ගනිමින් ඉන්නවා.”'},
+ {q:'How do you politely ask for help?',opts:['Help me now.','Could you please help me?','You help me, yes?'],correct:1,why:'“Could you please…?” is a polite way to ask. Sinhala: උදව්වක් ආචාරශීලීව ඉල්ලන ක්‍රමයක්.'},
+ {q:'Choose the natural sentence.',opts:['I look forward to hear from you.','I look forward hearing from you.','I look forward to hearing from you.'],correct:2,why:'Use “look forward to + verb-ing”. Sinhala: “ඔබගෙන් පිළිතුරක් ලැබෙන තුරු බලාපොරොත්තු වෙමි.”'}
+];
+let state={sessions:0,points:0,activities:0,scenario:0,quizIndex:0,quizAnswered:false};
+function load(){try{const s=JSON.parse(localStorage.getItem('speaklanka-demo')||'{}');state={...state,...s}}catch(e){}}
+function save(){try{localStorage.setItem('speaklanka-demo',JSON.stringify(state))}catch(e){};updateProgress()}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));if(id==='quiz')renderQuiz();if(id==='progress')updateProgress();window.scrollTo({top:0,behavior:'smooth'})}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+function setPractice(category){let idx=scenarios.findIndex(s=>s.category===category);if(idx<0)idx=0;state.scenario=idx;const s=scenarios[idx];document.getElementById('scenarioTitle').textContent=s.title;document.getElementById('scenarioText').textContent=s.text;document.querySelectorAll('#practiceChips .chip').forEach(b=>b.classList.toggle('selected',b.textContent.trim().startsWith(category==='Everyday English'?'Everyday':category==='Meeting someone'?'New people':category)));document.getElementById('practiceResult').classList.remove('show');}
+function nextScenario(){state.scenario=(state.scenario+1)%scenarios.length;setPractice(scenarios[state.scenario].category);document.getElementById('practiceAnswer').value=''}
+function resultHTML(tag,items){return '<div class="tag">'+tag+'</div>'+items.map(x=>'<div class="line"><strong>'+x[0]+'</strong><div>'+x[1]+'</div></div>').join('')}
+function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function reviewPractice(){const answer=document.getElementById('practiceAnswer').value.trim();if(!answer){toast('Please type your answer first.');return}const s=scenarios[state.scenario];const result=document.getElementById('practiceResult');let natural=s.sample;let tip='Good effort! Compare your answer with this polite example. Try reading it aloud once.';if(/\bplease\b/i.test(answer))tip='Nice! You used “please”, which makes your request polite. Compare your sentence with the example.';else if(answer.split(/\s+/).length<5)tip='Try adding a little more detail and a polite phrase such as “Could I…?” or “please”.';result.innerHTML=resultHTML('PRACTICE FEEDBACK',[['Your answer',escapeHTML(answer)],['Natural example',escapeHTML(natural)],['Tip',escapeHTML(tip)],['සිංහලෙන්','ඔයාගේ පිළිතුර හොඳයි. මේ උදාහරණය එක්ක සසඳලා, වඩාත් ආචාරශීලී වාක්‍යයක් කියන්න පුහුණු වෙන්න.']]);result.classList.add('show');state.sessions++;state.activities++;save()}
+function correctSentence(){const input=document.getElementById('sentenceInput').value.trim();if(!input){toast('Type a sentence first.');return}let corrected=input;let explanation='Read the sentence aloud and check the verb tense and word order.';const rules=[
+ [/^i am learn(ing)? english every day\.?$/i,'I am learning English every day.','Use “am + verb-ing”. Sinhala: “මම හැමදාම English ඉගෙන ගන්නවා.”'],
+ [/^i am agree\.?$/i,'I agree.','“Agree” is a verb, so we usually say “I agree”, not “I am agree”. Sinhala: “මම එකඟයි.”'],
+ [/^i didn.t went(.*)$/i,'I didn’t go$1','After “didn’t”, use the base verb “go”. Sinhala: “didn’t” පසු base verb එක යොදන්න.'],
+ [/^she go(.*)$/i,'She goes$1','With he/she/it in the present simple, add -s or -es to the verb. Sinhala: Present simple වල “she” සමඟ “goes” යොදන්න.'],
+ [/^i have 20 years old\.?$/i,'I am 20 years old.','In English, age uses “I am…”. Sinhala: වයස කියද්දී “I am…” භාවිතා කරනවා.'],
+ [/^i want learn(.*)$/i,'I want to learn$1','Use “want to + verb”. Sinhala: “want” පසු “to + verb” යොදන්න.']
+];for(const [re,rep,why] of rules){if(re.test(input)){corrected=input.replace(re,rep);explanation=why;break}}
+if(corrected===input){if(!/[.!?]$/.test(corrected))corrected+='.';if(/^[a-z]/.test(corrected))corrected=corrected[0].toUpperCase()+corrected.slice(1);explanation='This demo did not detect a common error. Check punctuation, verb tense and whether the sentence sounds natural.'}
+const lang=document.getElementById('meaningSelect').value;const res=document.getElementById('correctResult');res.innerHTML=resultHTML('SENTENCE REVIEW',[['Your sentence',escapeHTML(input)],['Suggested version',escapeHTML(corrected)],['Explanation',escapeHTML(explanation)],['Next step',lang==='Sinhala'?'නිවැරදි වාක්‍යය හඬින් කියලා නැවත පුහුණු වෙන්න.':'Read the corrected sentence aloud and try using it in a new example.']]);res.classList.add('show');state.sessions++;state.activities++;save()}
+function reviewInterview(){const a=document.getElementById('interviewAnswer').value.trim();if(!a){toast('Write your answer first.');return}const words=a.split(/\s+/).filter(Boolean).length;let tip=words<20?'Try 3–5 sentences. Add your background, one strength and the kind of opportunity you want.':'Good start! Make sure your answer includes your background, a relevant strength and what you hope to contribute.';const res=document.getElementById('interviewResult');res.innerHTML=resultHTML('INTERVIEW COACH',[['Your answer',escapeHTML(a)],['Structure tip',escapeHTML(tip)],['Useful phrase','“I am eager to learn, contribute to a team and develop my skills.”'],['සිංහලෙන්','ඔයාගේ අධ්‍යාපනය, ශක්තියක් සහ බලාපොරොත්තු වන අවස්ථාව ගැන කෙටියෙන් කියන්න.']]);res.classList.add('show');state.sessions++;state.activities++;save()}
+function renderQuiz(){const q=quizData[state.quizIndex];document.getElementById('quizCounter').textContent='QUESTION '+(state.quizIndex+1)+' OF '+quizData.length;document.getElementById('quizQuestion').textContent=q.q;const opts=document.getElementById('quizOptions');opts.innerHTML='';q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='choice';b.textContent=o;b.onclick=()=>answerQuiz(i,b);opts.appendChild(b)});document.getElementById('quizFeedback').textContent='';document.getElementById('nextQuiz').disabled=true;document.getElementById('nextQuiz').textContent=state.quizIndex===quizData.length-1?'Finish quiz ✓':'Next question →';state.quizAnswered=false}
+function answerQuiz(i,btn){if(state.quizAnswered)return;state.quizAnswered=true;const q=quizData[state.quizIndex];document.querySelectorAll('#quizOptions .choice').forEach((b,j)=>{if(j===q.correct)b.classList.add('correct');if(j===i&&i!==q.correct)b.classList.add('wrong');b.disabled=true});const good=i===q.correct;document.getElementById('quizFeedback').innerHTML=(good?'✅ Correct! ':'💡 Not quite. ')+escapeHTML(q.why);if(good)state.points++;state.activities++;save();document.getElementById('nextQuiz').disabled=false}
+function nextQuiz(){if(!state.quizAnswered)return;if(state.quizIndex<quizData.length-1){state.quizIndex++;renderQuiz()}else{toast('Quiz complete! Great work.');state.quizIndex=0;renderQuiz();showScreen('progress')}}
+function updateProgress(){document.getElementById('homeCount').textContent=state.sessions+' practice session'+(state.sessions===1?'':'s');document.getElementById('homeProgress').style.width=Math.min(100,state.activities/5*100)+'%';document.getElementById('homeGoal').textContent=Math.min(state.activities,5)+' of 5 activities toward your weekly goal';document.getElementById('statSessions').textContent=state.sessions;document.getElementById('statWords').textContent=state.points;document.getElementById('statDays').textContent=state.activities?1:0;document.getElementById('progressBar').style.width=Math.min(100,state.activities/5*100)+'%';document.getElementById('progressLabel').textContent=Math.min(state.activities,5)+' of 5 activities'}
+function resetProgress(){if(confirm('Reset all demo progress on this device?')){state={sessions:0,points:0,activities:0,scenario:0,quizIndex:0,quizAnswered:false};save();toast('Demo progress reset.')}}
+load();updateProgress();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
+</script>
+</body>
+</html>

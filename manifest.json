@@ -1,0 +1,11 @@
+{
+  "name": "SpeakLanka AI \u2014 English Practice",
+  "short_name": "SpeakLanka",
+  "description": "A Sinhala-friendly English practice prototype for Sri Lankan students and job seekers.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f6fc",
+  "theme_color": "#5b4bdb",
+  "orientation": "portrait",
+  "icons": []
+}
